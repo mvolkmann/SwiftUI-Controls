@@ -1,16 +1,31 @@
-//
-//  ContentView.swift
-//  SwiftUI-Controls
-//
-//  Created by R. Mark Volkmann on 11/1/21.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State var pressed = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                Button("Button 1") {
+                    //pressed.toggle()
+                    pressed = true
+                }
+                // Works in Simulator, but not in Preview.
+                .alert("My Title", isPresented: $pressed) {
+                    // Add this to do something
+                    // when the OK button is pressed.
+                    // Otherwise a default OK button
+                    // that does nothing is provided.
+                    /*
+                    Button("OK", role: .cancel) {
+                        print("dismissed alert")
+                    }
+                    */
+                } message: {
+                    Text("My Message")
+                }
+            }
+        }
     }
 }
 
